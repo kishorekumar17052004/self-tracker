@@ -48,6 +48,15 @@ export const ACCENTS = {
     ring: "ring-track-others",
     dot: "bg-track-others",
   },
+  classes: {
+    label: "Classes",
+    text: "text-track-classes",
+    bg: "bg-track-classes",
+    tint: "bg-track-classesTint",
+    border: "border-track-classes",
+    ring: "ring-track-classes",
+    dot: "bg-track-classes",
+  },
 };
 
 export const accentList = Object.keys(ACCENTS);

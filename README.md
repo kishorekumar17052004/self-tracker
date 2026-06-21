@@ -6,6 +6,7 @@ A personal self-improvement tracker built with React + Vite + Tailwind CSS. It h
 
 - **Dashboard** — a welcome message, today's date, a motivational quote, total/completed/pending task counts, today's & weekly progress, category-wise progress cards, a recent tasks list, and a quick-add-task button.
 - **Tasks** — a full task manager: add tasks with a category, priority, status, and due date; edit or delete any task; mark tasks complete; filter by category and status; search by title.
+- **Daily Schedule** — your hour-by-hour routine across Technical, Communication, and Aptitude trackers, with checkboxes that reset each day, plus a consolidated day-at-a-glance timeline.
 - **Consistency Checker** — add daily habits, mark them done, track streaks and missed days, and see a simple weekly calendar view.
 - **Technical Skills** — add topics (JavaScript, React, Node.js, MongoDB, ...), set status (Not Started / Learning / Completed), keep notes, and log practice sessions.
 - **Communication Skills** — log speaking practice topics, grammar sessions, self-introduction practice, and track a 1–10 confidence level.
@@ -52,6 +53,7 @@ src/
  ├── pages/
  │   ├── Dashboard.jsx
  │   ├── Tasks.jsx
+ │   ├── Schedule.jsx
  │   ├── Consistency.jsx
  │   ├── Technical.jsx
  │   ├── Communication.jsx

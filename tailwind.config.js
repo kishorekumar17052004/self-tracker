@@ -36,6 +36,8 @@ export default {
           consistencyTint: "#E5F5EC",
           others: "#7C5CD6",
           othersTint: "#F1ECFB",
+          classes: "#0E7C90",
+          classesTint: "#E2F2F5",
         },
       },
       boxShadow: {

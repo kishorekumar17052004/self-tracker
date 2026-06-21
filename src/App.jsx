@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./components/Toast";
 import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
+import Schedule from "./pages/Schedule";
 import Consistency from "./pages/Consistency";
 import Technical from "./pages/Technical";
 import Communication from "./pages/Communication";
@@ -21,6 +22,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/tasks" element={<Tasks />} />
+              <Route path="/schedule" element={<Schedule />} />
               <Route path="/consistency" element={<Consistency />} />
               <Route path="/technical" element={<Technical />} />
               <Route path="/communication" element={<Communication />} />

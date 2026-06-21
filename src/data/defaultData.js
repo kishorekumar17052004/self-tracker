@@ -173,6 +173,34 @@ export const emptyTask = {
   dueDate: "",
 };
 
+// ---------------------------------------------------------------------------
+// Time helpers (used by the Daily Schedule)
+// ---------------------------------------------------------------------------
+
+// "10:00" -> "10:00 AM", "13:30" -> "1:30 PM"
+export const formatTime12 = (hhmm) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  const period = h >= 12 ? "PM" : "AM";
+  let hour12 = h % 12;
+  if (hour12 === 0) hour12 = 12;
+  return `${hour12}:${String(m).padStart(2, "0")} ${period}`;
+};
+
+export const minutesSinceMidnight = (hhmm) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  return h * 60 + m;
+};
+
+export const minutesBetween = (start, end) => {
+  const diff = minutesSinceMidnight(end) - minutesSinceMidnight(start);
+  return diff < 0 ? diff + 24 * 60 : diff;
+};
+
+export const hoursLabel = (totalMinutes) => {
+  const hrs = totalMinutes / 60;
+  const rounded = Math.round(hrs * 10) / 10;
+  return `${rounded} ${rounded === 1 ? "Hour" : "Hours"}`;
+};
 
 
 export const defaultConsistencyTasks = [
@@ -233,4 +261,50 @@ export const defaultOtherGoals = [
   { id: uid(), category: "LinkedIn", name: "Refresh LinkedIn headline & summary", completed: false },
   { id: uid(), category: "Reading", name: "Read 10 pages today", completed: false },
   { id: uid(), category: "Health", name: "30 minutes of exercise", completed: false },
+];
+
+// ---------------------------------------------------------------------------
+// Daily Schedule
+// ---------------------------------------------------------------------------
+
+export const SCHEDULE_TRACKER_META = {
+  technical: { title: "Technical Tracker", accent: "technical" },
+  communication: { title: "Communication Tracker", accent: "communication" },
+  aptitude: { title: "Aptitude Tracker", accent: "aptitude" },
+};
+
+export const defaultScheduleItems = [
+  // Technical Tracker
+  { id: uid(), trackerKey: "technical", task: "React Learning", start: "10:00", end: "11:00", history: {} },
+  { id: uid(), trackerKey: "technical", task: "React Assignments", start: "11:00", end: "12:00", history: {} },
+  { id: uid(), trackerKey: "technical", task: "JavaScript Interview Topics", start: "13:00", end: "14:00", history: {} },
+  { id: uid(), trackerKey: "technical", task: "DSA Practice", start: "18:30", end: "19:30", history: {} },
+  { id: uid(), trackerKey: "technical", task: "Project Development", start: "19:30", end: "20:30", history: {} },
+  { id: uid(), trackerKey: "technical", task: "GitHub / Resume / LinkedIn", start: "20:30", end: "21:30", history: {} },
+
+  // Communication Tracker
+  { id: uid(), trackerKey: "communication", task: "English Speaking", start: "06:00", end: "06:15", history: {} },
+  { id: uid(), trackerKey: "communication", task: "Self Introduction", start: "06:15", end: "06:25", history: {} },
+  { id: uid(), trackerKey: "communication", task: "Technical Topic Explanation", start: "06:25", end: "06:35", history: {} },
+  { id: uid(), trackerKey: "communication", task: "Reading English Article", start: "06:35", end: "06:50", history: {} },
+  { id: uid(), trackerKey: "communication", task: "Vocabulary Learning", start: "06:50", end: "06:55", history: {} },
+  { id: uid(), trackerKey: "communication", task: "Sentence Writing", start: "06:55", end: "07:00", history: {} },
+
+  // Aptitude Tracker
+  { id: uid(), trackerKey: "aptitude", task: "Percentage", start: "07:00", end: "07:20", history: {} },
+  { id: uid(), trackerKey: "aptitude", task: "Profit & Loss", start: "07:20", end: "07:40", history: {} },
+  { id: uid(), trackerKey: "aptitude", task: "Ratio & Proportion", start: "07:40", end: "08:00", history: {} },
+  { id: uid(), trackerKey: "aptitude", task: "Time & Work", start: "08:00", end: "08:20", history: {} },
+  { id: uid(), trackerKey: "aptitude", task: "Time, Speed & Distance", start: "08:20", end: "08:40", history: {} },
+  { id: uid(), trackerKey: "aptitude", task: "Reasoning", start: "08:40", end: "09:00", history: {} },
+  { id: uid(), trackerKey: "aptitude", task: "Revision / Mock Practice", start: "09:00", end: "10:00", history: {} },
+];
+
+// The consolidated "Dashboard Summary" view — one row per continuous block of the day.
+export const SCHEDULE_TIMELINE = [
+  { trackerKey: "communication", label: "Communication", start: "06:00", end: "07:00" },
+  { trackerKey: "aptitude", label: "Aptitude", start: "07:00", end: "10:00" },
+  { trackerKey: "technical", label: "Technical", start: "10:00", end: "14:00" },
+  { trackerKey: "classes", label: "Classes", start: "15:00", end: "18:00" },
+  { trackerKey: "technical", label: "Technical (Continued)", start: "18:30", end: "21:30" },
 ];
